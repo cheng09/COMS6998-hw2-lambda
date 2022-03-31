@@ -84,3 +84,4 @@ def lambda_handler(event, context):
             },
             'body': json.dumps("No such photos.")
         }
+
