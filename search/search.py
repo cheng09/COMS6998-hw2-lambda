@@ -13,7 +13,7 @@ def lambda_handler(event, context):
     lex = boto3.client('lexv2-runtime')
     print(event)
     query = event['queryStringParameters']['q']
-
+# some comment
     lex_response = lex.recognize_text(
         botId='ARBQLPJYQJ',
         botAliasId='TSTALIASID',
