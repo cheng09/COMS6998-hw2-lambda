@@ -5,14 +5,33 @@ Resources:
   indexphotos:
     Type: 'AWS::Serverless::Function'
     Properties:
-      FunctionName: "search-photos-from-pipeline"
+      FunctionName: "index-photos-from-pipeline"
       Handler: index.lambda_handler
+      Runtime: python3.9
+      CodeUri: .
+      Description: "Lambda function for index photo"
+      MemorySize: 128
+      Timeout: 30
+      Role: "arn:aws:iam::315539653047:role/service-role/index-photos-role-4aq5jjuv"
+      Layers:
+        - "arn:aws:lambda:us-east-1:315539653047:layer:requests:1"
+      Environment:
+        Variables:
+          REGION: us-east-1
+
+  searchphotos:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: "search-photos-from-pipeline"
+      Handler: search.lambda_handler
       Runtime: python3.9
       CodeUri: .
       Description: "Lambda function for search photo"
       MemorySize: 128
       Timeout: 30
-      Role: "arn:aws:iam::315539653047:role/service-role/index-photos-role-4aq5jjuv"
+      Role: "arn:aws:iam::315539653047:role/service-role/search-photos-role-sqw3jmbr"
+      Layers:
+        - "arn:aws:lambda:us-east-1:315539653047:layer:requests:1"
       Environment:
         Variables:
           REGION: us-east-1
