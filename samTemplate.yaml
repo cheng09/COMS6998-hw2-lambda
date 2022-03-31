@@ -5,25 +5,14 @@ Resources:
   indexphotos:
     Type: 'AWS::Serverless::Function'
     Properties:
+      FunctionName: "search-photos-from-pipeline"
       Handler: index.lambda_handler
       Runtime: python3.9
       CodeUri: .
-      Description: ''
+      Description: "Lambda function for search photo"
       MemorySize: 128
-      Timeout: 3
-      Role: 'arn:aws:iam::805107066630:role/service-role/index-photos-role-xxb6jqav'
-      Events:
-        BucketEvent1:
-          Type: S3
-          Properties:
-            Bucket:
-              Ref: Bucket1
-            Events:
-              - 's3:ObjectCreated:Put'
-        Api1:
-          Type: Api
-          Properties:
-            Path: /MyResource
-            Method: ANY
-  Bucket1:
-    Type: 'AWS::S3::Bucket'
+      Timeout: 30
+      Role: "arn:aws:iam::315539653047:role/service-role/AWSCodePipelineServiceRole-us-east-1-codebuild-lambda-service-r"
+      Environment:
+        Variables:
+          REGION: us-east-1

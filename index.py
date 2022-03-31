@@ -14,7 +14,7 @@ def create_photo_obj(bucket, key, labels, customLabels):
 
 
 def lambda_handler(event, context):
-    es_endpoint = 'https://vpc-photos-2pms7kr53pja4nmkxfjxatdye4.us-east-1.es.amazonaws.com/'
+    es_endpoint = 'https://search-photos-gmr5cx5hqtvs3p5ro5fgepywmu.us-east-1.es.amazonaws.com/'
     es_url = es_endpoint + 'photos/_doc/'
     headers = {"Content-Type": "application/json"}
     es_master = 'test'
@@ -26,6 +26,8 @@ def lambda_handler(event, context):
         bucket = record['s3']['bucket']['name']
         key = record['s3']['object']['key']
         size = record['s3']['object']['size']
+        print('buck', bucket)
+        print('key', key)
         labels = rek.detect_labels(
             Image={
                 'S3Object': {
@@ -58,6 +60,7 @@ def lambda_handler(event, context):
         else:
             print(req.text)
             return json.loads(req.text)
+
     return {
         'statusCode': 200,
         'body': obj
