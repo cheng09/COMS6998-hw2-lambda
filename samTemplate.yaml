@@ -8,7 +8,7 @@ Resources:
       FunctionName: "index-photos-from-pipeline"
       Handler: index.lambda_handler
       Runtime: python3.9
-      CodeUri: .
+      CodeUri: ./index
       Description: "Lambda function for index photo"
       MemorySize: 128
       Timeout: 30
@@ -25,7 +25,7 @@ Resources:
       FunctionName: "search-photos-from-pipeline"
       Handler: search.lambda_handler
       Runtime: python3.9
-      CodeUri: .
+      CodeUri: ./search
       Description: "Lambda function for search photo"
       MemorySize: 128
       Timeout: 30
